@@ -1,0 +1,26 @@
+@import "src/assets/styles/_variables";
+
+.header {
+  display: flex;
+  position: relative;
+  height: size("header");
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 size("gutter--huge");
+  z-index: z-index("system");
+}
+
+.logo {
+  color: color("text");
+  font-size: 2em;
+  margin: 0;
+}
+
+.admin {
+  color: color("cool-red");
+}
+
+.clock {
+  font-size: 1.5em;
+}

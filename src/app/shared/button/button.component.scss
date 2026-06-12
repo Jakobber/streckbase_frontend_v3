@@ -1,0 +1,91 @@
+﻿@import "src/assets/styles/_variables";
+
+$height: 100px;
+$width: $height;
+$borderRadius: $height * 0.5;
+$color: #fff;
+
+.block {
+  text-align: center;
+  pointer-events: auto;
+}
+
+.button {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  appearance: none;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: none;
+  white-space: nowrap;
+  cursor: pointer;
+  vertical-align: top;
+  vertical-align: -webkit-baseline-middle;
+  transition: background-color, opacity .1s linear;
+  font-kerning: none;
+  user-select: none;
+  contain: content;
+  text-decoration: none;
+  border-radius: $borderRadius;
+  font-size: inherit;
+  border-color: transparent;
+  color: $color;
+  box-shadow: 0px 2px 10px 3px rgba(0, 0, 0, 0.1);
+  height: $height;
+  width: $width;
+
+  &.primary {
+    background-color: #fff;
+    color: color("background");
+    box-shadow: 0px 4px 20px 0px rgba(255, 255, 255, 0.4);
+  }
+
+  &.normal {
+    padding: .75rem 1.5rem;
+    font-weight: bold;
+    border: 1px solid color("border");
+    border-radius: 4px;
+    background-color: color("background");
+    color: color("text");
+    box-shadow: unset;
+    width: unset;
+    height: unset;
+    border-radius: 4px;
+    transition: background-color .1s linear, border-color .1s linear;
+
+    &:disabled {
+      opacity: .2;
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: color("cool-red");
+      border-color: color("cool-red");
+    }
+  }
+
+  &.danger {
+    background-color: color("cool-red");
+    border-color: color("cool-red");
+
+    &:hover {
+      background-color: darken(color("cool-red"), 10%) !important;
+      border-color: darken(color("cool-red"), 10%) !important;
+    }
+  }
+
+  &.light {
+    color: color("background");
+    background-color: #fff;
+  }
+
+  &.full {
+    width: 100%;
+  }
+}
+
+.label {
+  margin-top: size("gutter--small");
+  text-shadow: 1px 1px 10px #000;
+}

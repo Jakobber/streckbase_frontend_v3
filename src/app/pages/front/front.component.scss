@@ -1,0 +1,67 @@
+@import "src/assets/styles/_variables";
+
+.block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.content-container {
+  display: flex;
+  width: 100%;
+}
+
+.action-container {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  padding: size("gutter--huge");
+  bottom: 0;
+  left: 0;
+}
+
+.feed {
+  min-width: 25%;
+  width: 25%;
+  max-width: 25%;
+  position: relative;
+  height: 100vh;
+  padding: 0 size("gutter--huge");
+  padding-top: size("header");
+  background-color: rgba(0, 0, 0, .1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.list {
+  border-top: 1px solid color("border");
+  padding-top: size("gutter--huge");
+}
+
+.clock {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .inner {
+    width: 80%;
+  }
+}
+
+.highscore {
+  display: flex;
+  align-items: center;
+  min-width: 25%;
+  max-width: 25%;
+}
+
+.content {
+  width: 100%;
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, center top, center bottom, from(transparent), color-stop(70%, transparent), to(rgba(255, 255, 255, 0.15)));
+}

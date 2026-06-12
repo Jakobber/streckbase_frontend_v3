@@ -1,0 +1,160 @@
+@import "src/assets/styles/_variables";
+
+$gutter: 2rem;
+
+.row {
+  display: flex;
+  margin-left: $gutter * -0.5;
+  margin-right: $gutter * -0.5;
+}
+
+.title-row {
+  display: flex;
+}
+
+.user-card {
+  width: 115px;
+  margin-right: 2rem;
+}
+
+.label {
+  color: color("cool-red");
+  font-size: 1.5rem;
+}
+
+.count {
+  color: color("text--dark");
+  font-size: 1em;
+  margin-right: .25rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.debt-container {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+  margin-left: 2rem;
+}
+
+.debt {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: .5rem;
+  
+  .current-debt {
+    font-size: 1.25em;
+    line-height: 1;
+    color: color("text--muted");
+    margin-right: 1ch;
+  }
+  
+  .total-debt {
+    font-size: .875rem;
+    color: color("text--dark");
+  }
+}
+
+.left-column {
+  width: 40%;
+  padding: 0 $gutter * 0.5;
+  margin-top: $gutter;
+}
+
+.right-column {
+  width: 60%;
+  padding: 0 $gutter * 0.5;
+  margin-top: $gutter;
+}
+
+.list {
+  width: 100%;
+}
+
+.item {
+  width: 100%;
+  cursor: pointer;
+  padding: 1rem;
+
+  &.selected {
+    background-color: color("border");
+  }
+}
+
+.name {
+  display: block;
+  color: color("cool-red");
+  font-weight: bold;
+  margin-bottom: .25rem;
+}
+
+.event {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  font-size: 14px;
+
+  .item-date {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: 16px;
+  }
+
+  .price {
+    flex: 0 0 auto;
+    text-align: right;
+    color: color("text--dark");
+  }
+}
+
+.purchase-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  color: color("cool-red");
+}
+
+.purchase-text {
+  margin-top: .25rem;
+  text-align: center;
+  color: color("text--dark");
+  margin-bottom: size("gutter--extreme");
+}
+
+.error-message {
+  white-space: normal;
+}
+
+.help-label {
+  font-size: 1em;
+  color: color("background");
+  font-weight: bold;
+  margin-bottom: .25rem;
+}
+
+.undo-label {
+  font-size: 1em;
+  color: color("background");
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: .25rem;
+}
+
+.right-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+:host ::ng-deep .najs-active {
+  background-color: #2ecc71 !important;
+  box-shadow: 0px 4px 20px 0px rgba(46, 204, 113, 0.5);
+  font-size: .75rem;
+  font-weight: bold;
+  white-space: normal;
+  line-height: 1.2;
+}

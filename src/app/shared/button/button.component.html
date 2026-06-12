@@ -1,0 +1,7 @@
+<div class="block">
+  <button class="button" [ngClass]="modifiers" (click)="onClick($event)" [disabled]="disabled" [attr.type]="type">
+    <ng-content></ng-content>
+  </button>
+
+  <div *ngIf="label" class="label">{{label}}</div>
+</div>

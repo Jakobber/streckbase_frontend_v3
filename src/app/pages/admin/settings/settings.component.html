@@ -1,0 +1,36 @@
+<div class="inner">
+  <div class="label">Inställningar</div>
+
+  <div class="title">Prismultiplikatorer</div>
+  <p class="description">Nya produkter får sina priser beräknade från LoBare-priset med dessa multiplikatorer. Befintliga produkter påverkas inte.</p>
+
+  <form [formGroup]="multipliersForm" (ngSubmit)="save()">
+    <div class="form-group">
+      <label for="xlob">
+        <input type="number" step="0.01" class="form-control" id="xlob" formControlName="xlob" autocomplete="off">
+        <span>X-LoB multiplikator</span>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="andra">
+        <input type="number" step="0.01" class="form-control" id="andra" formControlName="andra" autocomplete="off">
+        <span>Andra multiplikator</span>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="najs">
+        <input type="number" step="0.01" class="form-control" id="najs" formControlName="najs" autocomplete="off">
+        <span>Najs multiplikator</span>
+      </label>
+    </div>
+
+    <div class="bottom-bar">
+      <span *ngIf="saved" class="saved-message">Sparat!</span>
+      <span *ngIf="applied" class="saved-message">Applicerat!</span>
+      <app-button modifiers="normal" type="button" [disabled]="multipliersForm.invalid || loading" (click)="applyToAll()">Applicera på alla produkter</app-button>
+      <app-button modifiers="normal" type="submit" [disabled]="multipliersForm.invalid">Spara</app-button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,144 @@
+<div *ngIf="lobare && andra" class="inner">
+  <div class="label">
+    Användare
+  </div>
+
+  <div class="title">LoBare</div>
+  <ul class="list">
+    <li *ngFor="let user of lobare" class="item">
+      <div class="user" (click)="edit(user)">
+        <app-user-card [user]="user" [showHeat]="true"></app-user-card>
+      </div>
+    </li>
+  </ul>
+
+  <div class="title">Övriga</div>
+  <ul class="list">
+    <li *ngFor="let user of andra" class="item">
+      <div class="user" (click)="edit(user)">
+        <app-user-card [user]="user" [showHeat]="true"></app-user-card>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="archivedUsers && archivedUsers.length > 0" class="inner">
+  <div class="label" (click)="showArchivedUsers = !showArchivedUsers" style="cursor:pointer">
+    Inaktiva användare ({{ archivedUsers.length }}) {{ showArchivedUsers ? '▲' : '▼' }}
+  </div>
+  <ul *ngIf="showArchivedUsers" class="list">
+    <li *ngFor="let user of archivedUsers" class="item">
+      <div class="user">
+        <app-user-card [user]="user"></app-user-card>
+        <button type="button" (click)="restoreUser(user)">Återaktivera</button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<app-action-bar [background]="true" position="right" (click)="toggleUserModal()">
+  <app-button label="Lägg till" modifiers="primary">
+    <fa-icon [icon]="faUser" size="2x"></fa-icon>
+  </app-button>
+</app-action-bar>
+
+<app-modal [title]="isNewUser ? 'Lägg till användare' : 'Redigera användare'" (action)="toggleUserModal()"
+  [(show)]="showUserModal" [includeFooter]="false" [allowOutsideClick]="false" [cancelable]="true">
+  <form [formGroup]="userForm" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="firstname">
+            <input type="text" class="form-control" id="firstname" formControlName="firstname" autocomplete="off"
+              required>
+            <span>Förnamn</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="lastname">
+            <input type="text" class="form-control" id="lastname" formControlName="lastname" autocomplete="off"
+              required>
+            <span>Efternamn</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="lobare">
+            <select class="form-control" id="lobare" formControlName="lobare">
+              <option [value]="1">LoBare</option>
+              <option [value]="2">X-LoB</option>
+              <option [value]="0">Andra</option>
+            </select>
+            <span>Klass</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <app-checkbox label="Admin" formControlName="admin"></app-checkbox>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="id">
+            <input type="text" class="form-control" id="id" formControlName="id" autocomplete="off"
+              placeholder="ÅÅMMDDXXXX" required>
+            <span>Personnummer</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="email">
+            <input type="email" class="form-control" id="email" formControlName="email" autocomplete="off" required>
+            <span>E-mail</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="debt">
+            <input type="text" class="form-control" id="debt" formControlName="debt" autocomplete="off">
+            <span>Skuld (kr)</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isNewUser && showChargeInput" class="payment-row">
+      <div class="form-group">
+        <label for="chargeAmount">
+          <input type="number" class="form-control" id="chargeAmount" [(ngModel)]="chargeAmount"
+            [ngModelOptions]="{standalone: true}" min="1" placeholder="0" autofocus>
+          <span>Belopp (kr)</span>
+        </label>
+      </div>
+      <app-button modifiers="normal primary" type="button"
+        [disabled]="!chargeAmount || chargeAmount <= 0 || loading"
+        (click)="submitCharge()">Bekräfta</app-button>
+    </div>
+
+    <div *ngIf="!isNewUser && showPaymentInput" class="payment-row">
+      <div class="form-group">
+        <label for="paymentAmount">
+          <input type="number" class="form-control" id="paymentAmount" [(ngModel)]="paymentAmount"
+            [ngModelOptions]="{standalone: true}" min="1" placeholder="0" autofocus>
+          <span>Belopp (kr)</span>
+        </label>
+      </div>
+      <app-button modifiers="normal primary" type="button"
+        [disabled]="!paymentAmount || paymentAmount <= 0 || loading"
+        (click)="submitRepayment()">Bekräfta</app-button>
+    </div>
+
+    <div class="bottom-bar">
+      <app-button *ngIf="!isNewUser" modifiers="normal danger" type="button" (click)="disable()">Inaktivera</app-button>
+      <app-button *ngIf="!isNewUser" modifiers="normal" type="button" (click)="toggleChargeInput()">
+        {{ showChargeInput ? 'Avbryt' : 'Debitering' }}
+      </app-button>
+      <app-button *ngIf="!isNewUser" modifiers="normal" type="button" (click)="togglePaymentInput()">
+        {{ showPaymentInput ? 'Avbryt' : 'Återbetalning' }}
+      </app-button>
+      <app-button modifiers="normal" type="submit" [disabled]="userForm.invalid">Spara</app-button>
+    </div>
+  </form>
+</app-modal>

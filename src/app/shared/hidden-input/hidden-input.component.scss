@@ -1,0 +1,22 @@
+@import "src/assets/styles/_variables";
+
+$flashColor: #fff;
+
+input {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -9999999;
+  color: #000;
+}
+
+.flash {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: $flashColor;
+  z-index: 9999999;
+}

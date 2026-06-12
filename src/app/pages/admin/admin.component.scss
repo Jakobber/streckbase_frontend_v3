@@ -1,0 +1,23 @@
+@import "src/assets/styles/_variables";
+
+$logoWidth: 160px;
+
+.container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.menu {
+  width: calc(#{$logoWidth} + #{2 * size("gutter--huge")});
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.content {
+  flex: 1;
+  padding: size("header") size("gutter--huge") size("gutter--huge") size("gutter--huge");
+  overflow-y: auto;
+}

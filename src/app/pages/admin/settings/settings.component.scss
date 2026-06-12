@@ -1,0 +1,20 @@
+.description {
+  margin-bottom: 1.5rem;
+  font-size: .9rem;
+  opacity: .7;
+}
+
+input[type="number"] {
+  color: #000;
+}
+
+.saved-message {
+  margin-right: 1rem;
+  color: green;
+}
+
+.bottom-bar {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}

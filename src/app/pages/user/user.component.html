@@ -1,0 +1,97 @@
+<app-wrapper>
+  <div *ngIf="user" class="inner">
+    <div class="title-row">
+      <div class="user-card">
+        <app-user-card [user]="user" [includeName]="false"></app-user-card>
+      </div>
+      <div>
+        <div class="label">
+          Användare
+        </div>
+        <div class="title">
+          {{user.firstname}} {{user.lastname}}
+        </div>
+        <div class="debt">
+          <span class="current-debt">Skuld: {{user.debt | prettyPrice}}</span>
+          <span class="total-debt">Totalt: {{user.totalDebt | prettyPrice}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="left-column">
+        <ul class="list">
+          <li *ngFor="let purchase of user.purchases" class="item" [class.selected]="purchase === purchaseItem" (click)="selectPurchase(purchase)">
+            <div class="name">
+              <span class="count">#{{ purchase.totalCount }}</span>
+              {{ purchase.item.name }}{{ purchase.najs ? ' Najs' : '' }}
+            </div>
+            <div class="event">
+              <span class="item-date">
+                {{ purchase.date | prettyDate }}
+              </span>
+              <span class="price">
+                {{purchase.item.price | prettyPrice}}
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="purchaseItem" class="right-column">
+        <div class="purchase-title">{{ purchaseItem.item.name }}{{ purchaseItem.najs ? ' Najs' : '' }}</div>
+        <div class="purchase-text">Du köpte denna artikel för {{ purchaseItem.date | prettyDate }}</div>
+        <app-button *ngIf="dateValid" modifiers="normal light" (click)="undoClick()">
+          <fa-icon [icon]="faUndo" size="1x"></fa-icon> Ångra köp?
+        </app-button>
+      </div>
+    </div>
+  </div>
+
+</app-wrapper>
+
+<app-action-bar [background]="true" position="between">
+  <app-button label="Bakåt" modifiers="primary" to="/users">
+    <fa-icon [icon]="faChevronLeft" size="2x"></fa-icon>
+  </app-button>
+
+  <div class="right-buttons">
+    <app-button *ngIf="user && user.lobare >= 1" label="Najs" [modifiers]="najsMode ? 'primary najs-active' : 'primary'" type="button" (click)="toggleNajs()">
+      <fa-icon [icon]="najsMode ? faCheck : faTimes" size="2x"></fa-icon>
+    </app-button>
+
+    <app-button label="Hjälp" modifiers="primary" (click)="toggleHelpModal()">
+      <fa-icon [icon]="faQuestion" size="2x"></fa-icon>
+    </app-button>
+  </div>
+</app-action-bar>
+
+<app-hidden-input (onValueChange)="buy($event)"></app-hidden-input>
+
+<app-modal [allowOutsideClick]="false" title="Hög skuld!" [(show)]="showDebtWarning">
+  Din skuld är hög. Överväg att betala av snarast
+</app-modal>
+
+<app-modal title="Hjälp" [(show)]="showHelpModal">
+  <div class="help-label">För att köpa en artikel:</div>
+  <div>Använd streckkodsläsaren och skanna av artikelns streckkod</div>
+
+  <div class="undo-label">För att ångra ett köp:</div>
+  <div>Köp som är gjorda inom 24 timmar går att ångra. Tryck på artikeln i listan för att göra den aktiv, och klicka
+    sedan på
+    knappen
+    <span style="margin-right: .25rem;">
+      <fa-icon [icon]="faUndo" size="1x"></fa-icon>
+    </span>
+    <i>Ångra köp?</i>
+  </div>
+</app-modal>
+
+<app-modal [allowOutsideClick]="false" [cancelable]="true" title="Ångra?" [(show)]="showUndoConfirmation" (action)="undoPurchase()">
+  <div>Säker på att du vill ångra köp?</div>
+</app-modal>
+
+<app-modal title="Fel" [(show)]="showError">
+  <div>{{ kindMessage }}</div>
+  <pre class="error-message">{{ errorMessage }}</pre>
+</app-modal>

@@ -1,0 +1,37 @@
+@import "src/assets/styles/_variables";
+
+$cardWidth: 12.5%;
+$gutter: 2rem;
+
+.inner {
+  padding-bottom: size("footer");
+}
+
+.label {
+  color: color("cool-red");
+  font-size: 1.5rem;
+  margin-bottom: .5rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: $gutter * -0.5;
+  margin-right: $gutter * -0.5;
+  transform: translateZ(0);
+
+  &.lobare {
+    margin-bottom: 2rem;
+  }
+}
+
+.item {
+  width: $cardWidth;
+  padding: $gutter * 0.5;
+  flex: 0 0 auto;
+}

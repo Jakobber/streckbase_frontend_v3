@@ -1,0 +1,47 @@
+@import "src/assets/styles/_variables";
+
+.block {
+  position: relative;
+}
+
+.bg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  z-index: -1;
+  transform: skew(36deg);
+  transform-origin: 0% 100%;
+}
+
+.donut {
+  backface-visibility: hidden;
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, center top, center bottom, from(transparent), color-stop(50%, transparent), to(rgba(255,255,255,0.2)));
+}
+
+.overlay {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+
+  &:after {
+    display: none;
+  }
+}
+
+.digits {
+  text-align: center;
+}
+
+.time {
+  font-size: 5em;
+}
+
+.date {
+  font-size: 1.5em;
+  color: color("light-grey");
+}

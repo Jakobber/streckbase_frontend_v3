@@ -1,0 +1,38 @@
+<app-wrapper>
+  <div class="container">
+    <div *ngIf="item" class="row">
+      <div class="column left">
+        <div class="label">
+          Artikel
+        </div>
+
+        <div class="title">
+          {{ item.name }}
+        </div>
+
+        <div class="price">{{ item.price | prettyPrice }}</div>
+      </div>
+
+      <div class="column right">
+        <div class="image-container">
+          <img *ngIf="item.imageUrl" class="item-image" [src]="item.imageUrl">
+          <div *ngIf="!item.imageUrl" class="image-placeholder">
+            <fa-icon [icon]="faCocktail" size="6x"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-action-bar [background]="true" position="left">
+    <app-button label="Bakåt" modifiers="primary" to="/">
+      <fa-icon [icon]="faChevronLeft" size="2x"></fa-icon>
+    </app-button>
+  </app-action-bar>
+</app-wrapper>
+
+<app-hidden-input (onValueChange)="onValueChange($event)"></app-hidden-input>
+
+<app-modal title="Fel" [(show)]="showErrorModal" (action)="goBack()">
+  Artikeln kunde inte hittas
+</app-modal>

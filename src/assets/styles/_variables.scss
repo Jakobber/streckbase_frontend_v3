@@ -1,0 +1,54 @@
+$colors: (
+  "background": #131322,
+  "neon-red": #FF495C,
+  "cool-red": #e9445a,
+  "purple": #C64191,
+  "border": #32383D,
+  "text": #fff,
+  "text--dark": #98989e,
+  "text--muted": #DDD4D4,
+  "light-grey": #A1B4C4,
+  "neutral": #008148,
+  "warning": #FFBA08,
+  "danger": #F40000
+);
+
+$breakpoints: (
+  "mini"   : 380px,
+  "tiny"   : 550px,
+  "small"  : 750px,
+  "medium" : 884px,
+  "large"  : 1176px
+);
+
+$sizes: (
+  "header": 100px,
+  "footer": 144px,
+  "gutter--mini": .25rem,
+  "gutter--small": .5rem,
+  "gutter": 1rem,
+  "gutter--large": 1.5rem,
+  "gutter--huge": 2rem,
+  "gutter--extreme": 3rem
+);
+
+$z: (
+  "overlay": 1000,
+  "system": 500
+);
+
+@function color($key) {
+  @return map-get($colors, $key);
+}
+
+@function breakpoint($key) {
+  @return map-get($breakpoints, $key);
+}
+
+@function size($key) {
+  @return map-get($sizes, $key);
+}
+
+@function z-index($key) {
+  @return map-get($z, $key);
+}

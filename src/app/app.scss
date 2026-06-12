@@ -1,0 +1,21 @@
+@import "src/assets/styles/_variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  height: size("header");
+}
+
+.content {
+  height: 100%;
+  flex-grow: 0;
+  overflow: hidden;
+}
+
+.blurred {
+  filter: blur(20px);
+}
